@@ -3,3 +3,13 @@
     display: block;
     margin-top: 0; 
 }
+
+/* setting width for country code field */
+#countryCode {
+    width: 100px;
+}
+
+/* Adding a vertical line between 2 child divs */
+.home-form-section {    
+    border-right: 2px solid grey;
+}
