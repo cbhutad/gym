@@ -1,0 +1,3 @@
+# Web Applications
+
+This folder contains the various projects undertaken to improve my so called web application developement skills. For each project the aim is to provide notes on how the project was developed in order to simplify some of the common occurring tricks that can be reused and checked here first rather than checking the internet again and again on how to do repeated stuff. This is purely for personal use.
