@@ -83,16 +83,32 @@
             </button>
           </div>
         
-      <div class="home" id="home">
-        <div class="home-form-section">
+      <div class="home d-flex flex-row" id="home">
+        <div class="home-form-section p-3 d-flex flex-column">
           <h2 class="form-title">Book Your Dream Vacation</h2>
           <form id="bookingForm">
-        
+            <label for="name" class="form-label my-2">Name</label>
+            <input type="text" class="form-control" name="name" id="name">                                                              
             
+            <label for="email" class="form-label my-2">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
+            
+            <label for="phone" class="form-label my-2">Phone Number</label>
+            <div class="d-flex flex-row">  
+              <select class="form-select" id="countryCode" aria-label="Default select example"></select>
+              <input type="number" class="form-control" name="phone" id="phone">
+            </div>
+
+            <label for="birthday" class="form-label my-2">Birthday</label>
+            <input type="date" class="form-control" name="birthday "id="birthday">                                                                                                                                 <label for="maritalStatus" class="form-label my-2">Marital Status</label>                                                                 <select class="form-select" name="maritalStatus" id="maritalStatus" aria-label="Default select example">
+              <option value="single">Single</option>
+              <option value="married">Married</option>
+            </select>
           </form>
-      </div>
+          <button class="btn btn-primary my-4 align-self-center" style="max-width: 100px;" type="submit">Button</button>
+        </div>
       
-        <div class="home-packages-section">
+        <div class="home-packages-section p-3">
           <h2 class="section-title">Explore Our Travel Packages</h2>
           <div class="packages-container" id="packages-container">
              
