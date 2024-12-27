@@ -46,26 +46,31 @@
     </nav>
   
     <div class="container">
-      
-        <div id="carouselExampleCaptions" class="carousel slide">
+
+        <!-- adding margin to entire carousel div -->
+        <div id="carouselExampleCaptions" class="carousel slide my-5" data-bs-ride="carousel">
             <div class="carousel-indicators">
-              
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-            
+              <div class="carousel-item active" data-bs-interval="3000">
+                <img src="./images/img1.jpg" class="img-fluid rounded-5 d-block w-100" alt="image1">
               </div>
-              <div class="carousel-item">
-               
+              <div class="carousel-item"  data-bs-interval="3000">
+                <img src="./images/img2.jpg" class="img-fluid rounded-5 d-block w-100" alt="image1">
               </div>
-              <div class="carousel-item">
-              
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="./images/img3.jpg" class="img-fluid rounded-5 d-block w-100" alt="image1">
               </div>
-              <div class="carousel-item">
-             
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="./images/img4.jpg" class="img-fluid rounded-5 d-block w-100" alt="image1">
               </div>
-              <div class="carousel-item">
-             
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="./images/img5.jpg" class="img-fluid rounded-5 d-block w-100" alt="image1">
               </div>
             </div>
             <button class="carousel-control-prev previous-slide" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
