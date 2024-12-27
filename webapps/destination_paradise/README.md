@@ -39,3 +39,18 @@ And to center the links for the `ul` tag we use the `justify-content-center` cla
 ![Navbar image4](./screenshots/image4.png)
 
 The Destinations url needs to display options on hover and in order to do this we need to add a bit of custom css.
+
+## Carousel
+
+In order to display the slides of carosuel we need images. As there are no images being provided in the instructions specified we need to get 5 such images ourselves. This are stored in the `images` folder.  Next looking at the template code provided, we already have the `previous` and `next` buttons added to slide through the `carousel`. First we add the images downloaded. Each carousel image is added with following classes
+
+`img-fluid` -> makes the images responsive.
+`rounded-5` -> adds border-radius to the images.
+`d-block` -> makes the images visible on all sizes of screen.
+`w-100` -> not exactly sure on this but maybe it sets the element to occupy 100% of the width of parent tag width.
+
+![Carousel image1](./images/image5.png)
+
+The buttons provided for moving across slides do not work and for this we need to add the indicators in the carousel slides to do that. These are `carousel indicators` which represent the images in the carousel and enable the sliding actions. The [basic example](https://getbootstrap.com/docs/5.3/components/carousel/#basic-examples) provided in the bootstrap doc was copied and modified to accordingly for the images.
+
+A basic carousel is ready. Now in order to make the slides move automatically we add the `data-bs-ride=carousel` attribute to the main parent tag and in each of the slide component we specify the `data-bs-interval=3000` where 3000 are in milliseconds to switch to the next image in the slide.
