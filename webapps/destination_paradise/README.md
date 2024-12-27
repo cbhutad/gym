@@ -54,3 +54,25 @@ In order to display the slides of carosuel we need images. As there are no image
 The buttons provided for moving across slides do not work and for this we need to add the indicators in the carousel slides to do that. These are `carousel indicators` which represent the images in the carousel and enable the sliding actions. The [basic example](https://getbootstrap.com/docs/5.3/components/carousel/#basic-examples) provided in the bootstrap doc was copied and modified to accordingly for the images.
 
 A basic carousel is ready. Now in order to make the slides move automatically we add the `data-bs-ride=carousel` attribute to the main parent tag and in each of the slide component we specify the `data-bs-interval=3000` where 3000 are in milliseconds to switch to the next image in the slide.
+
+## Home Div settings
+
+We set the 2 sections in the `home` side by side using the flex styling first. We also add border on the left side of `home-form-section` class div in order to differentiate between them.
+
+![homediv image1](./screenshots/image6.png)
+
+## Booking form
+
+The form to be added requires the `name`, `email`, `birthday`, `marital status` fields. This are pretty straightforward to add. Here we customize the `phone number` field so that the `countryCode` dropdown and input field to enter numbers appear side to side.
+
+![form image1](./screenshots/image7.png)
+
+To do this we add the `countryCode` select tag and number input field in a single div and add `d-flex` and `flex-row` classes on it. This will add flex styling with both components being displayed in the same row.
+
+![form image2](./screenshots/image8.png)
+
+The `countryCode` to be displayed is provided in a javascript object in the instructions and we need to load them in the `select` tag using javascript.
+
+Finally a button to submit the form details is added after the form. To center this we add `d-flex` and `flex-column` on the parent tag for the `form` element and set `align-self-center` class on the button element.
+
+![form image3](./screenshots/image9.png)
