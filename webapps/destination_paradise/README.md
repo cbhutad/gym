@@ -49,7 +49,7 @@ In order to display the slides of carosuel we need images. As there are no image
 `d-block` -> makes the images visible on all sizes of screen.
 `w-100` -> not exactly sure on this but maybe it sets the element to occupy 100% of the width of parent tag width.
 
-![Carousel image1](./images/image5.png)
+![Carousel image1](./screenshots/image5.png)
 
 The buttons provided for moving across slides do not work and for this we need to add the indicators in the carousel slides to do that. These are `carousel indicators` which represent the images in the carousel and enable the sliding actions. The [basic example](https://getbootstrap.com/docs/5.3/components/carousel/#basic-examples) provided in the bootstrap doc was copied and modified to accordingly for the images.
 
