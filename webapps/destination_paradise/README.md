@@ -73,6 +73,10 @@ To do this we add the `countryCode` select tag and number input field in a singl
 
 The `countryCode` to be displayed is provided in a javascript object in the instructions and we need to load them in the `select` tag using javascript.
 
-Finally a button to submit the form details is added after the form. To center this we add `d-flex` and `flex-column` on the parent tag for the `form` element and set `align-self-center` class on the button element.
+Finally a button to submit the form details is added after the form. To center this we add `d-flex` and `flex-column` on the parent tag for the `form` element and set `align-self-center` class on the button element. The button must be inside the `form` tag to actually submit the data to the required `action` parameter specified function or url which was missed by me and fixed it.
 
 ![form image3](./screenshots/image9.png)
+
+## About Us Section
+
+This is achieved by setting a `h2` tag with content as `About Us` and `div` tag with 2 children `div` tags in it. The first child `div` tag contains the  `img` tag and second `div` tag contains the description as per the demo ui shown being mirrored as mentioned in the instructions. To center text we can use the `text-center` class. Other code is easy to understand on reading so not going to go deep into it. 
