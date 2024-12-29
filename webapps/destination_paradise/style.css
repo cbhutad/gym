@@ -13,3 +13,13 @@
 .home-form-section {    
     border-right: 2px solid grey;
 }
+
+/* Phone number invalid span class */
+#phone-number-error {
+	display: none;
+}
+
+/* Birthday invalid span class */
+#birthday-error {
+	display: none;
+}
