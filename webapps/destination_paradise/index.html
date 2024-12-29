@@ -86,7 +86,7 @@
 			<div class="home d-flex flex-row" id="home">
 				<div class="home-form-section p-3 d-flex flex-column">
 					<h2 class="form-title">Book Your Dream Vacation</h2>
-					<form id="bookingForm" class="d-flex flex-column" action="#">
+					<form id="bookingForm" class="d-flex flex-column">
 						<label for="name" class="form-label my-2">Name</label>
 						<input type="text" class="form-control" name="name" id="name" required>                                                              
 
@@ -98,16 +98,21 @@
 							<select class="form-select" id="countryCode" aria-label="Default select example" required></select>
 							<input type="number" class="form-control" name="phone" id="phone" required>
 						</div>
+						<!-- Error message for incorrect phone number format -->
+						<span id="phone-number-error" class="text-center my-2"></span>
 
 						<label for="birthday" class="form-label my-2">Birthday</label>
-						<input type="date" class="form-control" name="birthday "id="birthday" required>                                                                                             
+						<input type="date" class="form-control" name="birthday" id="birthday" required>
+						<!-- Error message for less than 18 years age -->
+						<span id="birthday-error" class="text-center my-2"></span>
+
 						<label for="maritalStatus" class="form-label my-2">Marital Status</label>
 						<select class="form-select" name="maritalStatus" id="maritalStatus" aria-label="Default select example" required>
 							<option value="single">Single</option>
 							<option value="married">Married</option>
 						</select>
 
-						<button class="btn btn-primary my-4 align-self-center" style="max-width: 100px;" type="submit">Submit</button>
+						<button class="btn btn-primary my-4 align-self-center" style="max-width: 100px;" type="button" onclick="validateForm()">Submit</button>
 
 					</form>
 				</div>
