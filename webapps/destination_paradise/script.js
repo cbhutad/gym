@@ -24,14 +24,55 @@ const countryCodes = [
     // Add more countries as needed
 ];
 
+// Packages array
+const packages = [
+	{
+	name: "Beach Getaway",
+	photo: "https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_640.jpg",
+	description: "Enjoy a relaxing time at the sunny beaches of Bali. Inclusive of hotel stay and guided tours."
+	},
+	{
+	name: "Mountain Adventure",
+	photo: "https://cdn.pixabay.com/photo/2016/11/14/03/26/cliff-1822484_640.jpg",
+	description: "Explore the thrilling trails of the Himalayas. Package includes hiking, camping, and meals."
+	},
+	{
+	name: "City Life Experience",
+	photo: "https://cdn.pixabay.com/photo/2017/03/29/15/18/tianjin-2185510_1280.jpg",
+	description: "Discover the vibrant life of New York City. Comes with city tours and museum passes."
+	},
+	// Add more packages as needed
+];
+
 /* Loading countryCodes options */
 const countryCodeSelect = document.getElementById("countryCode");
 
-for (let i = 0;i < countryCodes.length;i++) {
-    const option = document.createElement("option");
-    option.value = countryCodes[i].code;
-    option.innerHTML = countryCodes[i].name;
-    countryCodeSelect.appendChild(option);
+function loadCountryCodes() {
+	for (let i = 0;i < countryCodes.length;i++) {
+		const option = document.createElement("option");
+		option.value = countryCodes[i].code;
+		option.innerHTML = countryCodes[i].name;
+		countryCodeSelect.appendChild(option);
+	}
+}
+
+/* Loading packages */
+const packagesContainer = document.getElementById("packages-container");
+
+function loadPackages() {
+	packages.forEach(pkg => {
+		const packageElement = document.createElement("div");
+		packageElement.className = "package";
+		packageElement.innerHTML = `
+			<div class="image-container">
+				<img src="${pkg.photo}" alt="${pkg.name}">
+			</div>
+			<h4 class="package-name">${pkg.name}</h4>
+			<p class="package-description">${pkg.description}</p>
+			<a href="#" class="book-now-btn">Book Now</a>
+		`;
+		packagesContainer.appendChild(packageElement);
+	});
 }
 
 /* Validate phone number function */
@@ -87,6 +128,38 @@ function validateForm() {
 
 	if (validPhone && validAge) {
 		alert(" Thanks for your interest, our tour experts will get back to you shorty! ");
+		// Resetting the form on successful validations.
 		document.getElementById("bookingForm").reset();
 	}
 }
+
+/* Search input functionality */
+const searchInput = document.querySelector('input[type="search"]');
+
+searchInput.addEventListener('input', (event) => {
+	if (searchInput.value.length != 0) {
+		for(let i = 0;i < packages.length; i++) {
+			if (packages[i].name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+				packagesContainer.innerHTML = "";
+				const packageElement = document.createElement("div");
+				packageElement.className = "package";
+				packageElement.innerHTML = `
+					<div class="image-container">
+						<img src="${packages[i].photo}" alt="${packages[i].name}">
+					</div>
+					<h4 class="package-name">${packages[i].name}</h4>
+					<p class="package-description">${packages[i].description}</p>
+					<a href="#" class="book-now-btn">Book Now</a>
+				`;
+				packagesContainer.appendChild(packageElement);
+				break;
+			}
+		}
+	} else {
+		packagesContainer.innerHTML = "";
+		loadPackages();
+	}
+});
+
+loadCountryCodes();
+loadPackages();
