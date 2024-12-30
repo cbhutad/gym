@@ -77,6 +77,22 @@ Finally a button to submit the form details is added after the form. To center t
 
 ![form image3](./screenshots/image9.png)
 
+### Validations
+
+In the given instructions for booking form section, it's mentioned that each input field is compulsory to be provided with data. In order to solve this just add the `required` parameter to the input tags. Next we move to the validation for phone numbers. The instructions also mention in case of error we must provide a error response below the input field as indication to the user so we add a `span` tag and provide it with id. Initially during the data entering phase of user this tag should be hidden and only displayed when an error is generated. Hence we add the appropriate display css to this tag by using css id selector. The logic in javascript uses regular expression in order to validate the length and number check for the phone number. The validation of birthdate is much trickier part. This required approximate calculation of years from the provided birthdate. Both the functions are added in the `onchange` attribute so that after the provided input field is populated the validation checks can be triggered. Finally the button calls the final validation function which will generate the consolidation message as per instructions in case all validations are passsing and we mimic the action of resetting form.
+
+Phone number validation fails
+
+![phone number error case](./screenshots/image10.png)
+
+Birthday validation fails
+
+![birthdate error case](./screenshots/image11.png)
+
+All validations passing on form submission
+
+![all validations case](./screenshots/image12.png)
+
 ## About Us Section
 
 This is achieved by setting a `h2` tag with content as `About Us` and `div` tag with 2 children `div` tags in it. The first child `div` tag contains the  `img` tag and second `div` tag contains the description as per the demo ui shown being mirrored as mentioned in the instructions. To center text we can use the `text-center` class. Other code is easy to understand on reading so not going to go deep into it. 
