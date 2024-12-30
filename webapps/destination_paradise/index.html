@@ -96,13 +96,13 @@
 						<label for="phone" class="form-label my-2">Phone Number</label>
 						<div class="d-flex flex-row">  
 							<select class="form-select" id="countryCode" aria-label="Default select example" required></select>
-							<input type="number" class="form-control" name="phone" id="phone" required>
+							<input type="number" class="form-control" name="phone" id="phone" onchange="validatePhoneNumber()" required>
 						</div>
 						<!-- Error message for incorrect phone number format -->
 						<span id="phone-number-error" class="text-center my-2"></span>
 
 						<label for="birthday" class="form-label my-2">Birthday</label>
-						<input type="date" class="form-control" name="birthday" id="birthday" required>
+						<input type="date" class="form-control" name="birthday" id="birthday" onchange="validateAge()" required>
 						<!-- Error message for less than 18 years age -->
 						<span id="birthday-error" class="text-center my-2"></span>
 
