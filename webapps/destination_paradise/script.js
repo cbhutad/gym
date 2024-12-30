@@ -87,5 +87,6 @@ function validateForm() {
 
 	if (validPhone && validAge) {
 		alert(" Thanks for your interest, our tour experts will get back to you shorty! ");
+		document.getElementById("bookingForm").reset();
 	}
 }
