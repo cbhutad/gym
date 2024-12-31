@@ -24,14 +24,17 @@
 	display: none;
 }
 
+/* Home Section setting */
 .home-form-section {
     flex-basis: 80%;
 }
 
+/* Packages container height to occupy full height */
 .packages-container {
     height: 100%;
 }
 
+/* Individual package styling */
 .package {
     padding-top: 10px;
     display: flex;
