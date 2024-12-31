@@ -93,6 +93,16 @@ All validations passing on form submission
 
 ![all validations case](./screenshots/image12.png)
 
+The successful validation post alert pop up should result into a clearing of the input data and so we use the `reset` function on the form DOM object for this purpose.
+
+## Packages Section
+
+The working of packages section involves the dynamic loading of packages entries from the `packages` array mentioned in the script.js. A new function `loadPackages` is loading this packages one by one. Related to styling the css can only be understood once going through.
+
 ## About Us Section
 
 This is achieved by setting a `h2` tag with content as `About Us` and `div` tag with 2 children `div` tags in it. The first child `div` tag contains the  `img` tag and second `div` tag contains the description as per the demo ui shown being mirrored as mentioned in the instructions. To center text we can use the `text-center` class. Other code is easy to understand on reading so not going to go deep into it. 
+
+## Search Field 
+
+In order to make the search field working a new `eventListener` is added on the input field which loops across the packages and checks if the name of the package is matching with entered value and loads only that particular package and skips the other. In case of input being empty we call the `loadPackages` function to display all the packages again.
