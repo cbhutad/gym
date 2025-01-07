@@ -33,4 +33,27 @@ public class Lexer {
 		return this.currentCharacter;
 	}
 
+	public Token getToken() {
+
+		Token token = null;
+
+		if (currentCharacter == '+') {
+			token = new Token("+", TokenType.PLUS);
+		} else if (currentCharacter == '-') {
+			token = new Token("-", TokenType.MINUS);
+		} else if (currentCharacter == '*') {
+			token = new Token("*", TokenType.ASTERISK);
+		} else if (currentCharacter == '/') {
+			token = new Token("/", TokenType.SLASH);
+		} else if (currentCharacter == '\0') {
+			token = new Token("\0", TokenType.EOF);
+		} else if (currentCharacter == '\n') {
+			token = new Token("\n", TokenType.NEWLINE);
+		} else {
+			// Unknown token
+		}
+
+		nextCharacter();
+		return token;
+	}
 }
