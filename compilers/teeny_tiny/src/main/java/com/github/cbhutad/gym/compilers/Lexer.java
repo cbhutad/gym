@@ -33,6 +33,11 @@ public class Lexer {
 		return this.currentCharacter;
 	}
 
+	public void abort(String message) {
+		System.out.println("Error. " + message);
+		System.exit(-1);
+	}
+
 	public Token getToken() {
 
 		Token token = null;
@@ -51,6 +56,7 @@ public class Lexer {
 			token = new Token("\n", TokenType.NEWLINE);
 		} else {
 			// Unknown token
+			abort("Unknown token : " + currentCharacter);
 		}
 
 		nextCharacter();
