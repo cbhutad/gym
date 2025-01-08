@@ -34,11 +34,19 @@ public class Lexer {
 	}
 
 	public void abort(String message) {
-		System.out.println("Error. " + message);
+		System.out.println("Lexing error. " + message);
 		System.exit(-1);
 	}
 
+	public void skipWhitespaces() {
+		while (currentCharacter == ' ' || currentCharacter == '\t' || currentCharacter == '\r') {
+			nextCharacter();
+		}
+	}
+
 	public Token getToken() {
+
+		skipWhitespaces();
 
 		Token token = null;
 
