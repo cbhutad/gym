@@ -27,9 +27,9 @@ public class LexerTest {
 
 	@Test
 	public void testOperators() {
-		String source = "+/*-";
+		String source = "+- */ >>= = !=";
 		List<String> result = new ArrayList<>();
-		List<String> expected = Arrays.asList("PLUS", "SLASH", "ASTERISK", "MINUS", "NEWLINE");
+		List<String> expected = Arrays.asList("PLUS", "MINUS", "ASTERISK", "SLASH", "GT", "GTEQ", "EQ", "NOTEQ", "NEWLINE");
 
 		Lexer lex = new Lexer(source);
 		Token token = lex.getToken();
