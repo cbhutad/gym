@@ -10,7 +10,7 @@ public class Lexer {
 		this.source = source + "\n";
 		this.currentCharacter = ' ';
 		this.currentPosition = -1;
-		nextCharacter();
+		this.nextCharacter();
 	}
 
 	public void nextCharacter() {
@@ -40,43 +40,71 @@ public class Lexer {
 
 	public void skipWhitespaces() {
 		while (this.currentCharacter == ' ' || this.currentCharacter == '\t' || this.currentCharacter == '\r') {
-			nextCharacter();
+			this.nextCharacter();
 		}
 	}
 
 	public void skipComments() {
 		if (this.currentCharacter == '#') {
 			while (this.currentCharacter != '\n') {
-				nextCharacter();
+				this.nextCharacter();
 			}
 		}
 	}
 
 	public Token getToken() {
 
-		skipWhitespaces();
-		skipComments();
+		this.skipWhitespaces();
+		this.skipComments();
 
 		Token token = null;
 
-		if (currentCharacter == '+') {
+		if (this.currentCharacter == '+') {
 			token = new Token("+", TokenType.PLUS);
-		} else if (currentCharacter == '-') {
+		} else if (this.currentCharacter == '-') {
 			token = new Token("-", TokenType.MINUS);
-		} else if (currentCharacter == '*') {
+		} else if (this.currentCharacter == '*') {
 			token = new Token("*", TokenType.ASTERISK);
-		} else if (currentCharacter == '/') {
+		} else if (this.currentCharacter == '/') {
 			token = new Token("/", TokenType.SLASH);
-		} else if (currentCharacter == '\0') {
+		} else if (this.currentCharacter == '\0') {
 			token = new Token("\0", TokenType.EOF);
-		} else if (currentCharacter == '\n') {
+		} else if (this.currentCharacter == '\n') {
 			token = new Token("\n", TokenType.NEWLINE);
+		} else if (this.currentCharacter == '=') {
+			if (this.peek() == '=') {
+				this.nextCharacter();
+				token = new Token("==", TokenType.EQEQ);
+			} else {
+				token = new Token("=", TokenType.EQ);
+			}
+		} else if (this.currentCharacter == '>') {
+			if (this.peek() == '=') {
+				this.nextCharacter();
+				token = new Token(">=", TokenType.GTEQ);
+			} else {
+				token = new Token(">", TokenType.GT);
+			}
+		} else if (this.currentCharacter == '<') {
+			if (this.peek() == '=') {
+				this.nextCharacter();
+				token = new Token("<=", TokenType.LTEQ);
+			} else {
+				token = new Token("<", TokenType.LT);
+			}
+		} else if (this.currentCharacter == '!') {
+			if (this.peek() == '=') {
+				this.nextCharacter();
+				token = new Token("!=", TokenType.NOTEQ);
+			} else {
+				this.abort("Expected !=, got !" + this.peek());
+			}
 		} else {
 			// Unknown token
-			abort("Unknown token : " + currentCharacter);
+			this.abort("Unknown token : " + this.currentCharacter);
 		}
 
-		nextCharacter();
+		this.nextCharacter();
 		return token;
 	}
 }
