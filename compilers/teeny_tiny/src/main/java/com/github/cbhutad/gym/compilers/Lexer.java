@@ -39,14 +39,23 @@ public class Lexer {
 	}
 
 	public void skipWhitespaces() {
-		while (currentCharacter == ' ' || currentCharacter == '\t' || currentCharacter == '\r') {
+		while (this.currentCharacter == ' ' || this.currentCharacter == '\t' || this.currentCharacter == '\r') {
 			nextCharacter();
+		}
+	}
+
+	public void skipComments() {
+		if (this.currentCharacter == '#') {
+			while (this.currentCharacter != '\n') {
+				nextCharacter();
+			}
 		}
 	}
 
 	public Token getToken() {
 
 		skipWhitespaces();
+		skipComments();
 
 		Token token = null;
 
