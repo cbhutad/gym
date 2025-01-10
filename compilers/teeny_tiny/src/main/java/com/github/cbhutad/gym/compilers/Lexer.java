@@ -99,6 +99,18 @@ public class Lexer {
 			} else {
 				this.abort("Expected !=, got !" + this.peek());
 			}
+		} else if (this.currentCharacter == '"') {
+			this.nextCharacter();
+			int startPos = this.currentPosition;
+
+			while(this.currentCharacter != '"') {
+				if (this.currentCharacter == '\n' || this.currentCharacter == '\t' || this.currentCharacter == '\r' || this.currentCharacter == '%' || this.currentCharacter == '\\') {
+					this.abort("Illegal special character inside string.");
+				}
+				this.nextCharacter();
+			}
+
+			token = new Token(this.source.substring(startPos, this.currentPosition), TokenType.STRING);
 		} else {
 			// Unknown token
 			this.abort("Unknown token : " + this.currentCharacter);
