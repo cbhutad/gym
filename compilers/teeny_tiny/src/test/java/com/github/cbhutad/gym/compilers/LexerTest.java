@@ -92,5 +92,39 @@ public class LexerTest {
 
 		assertEquals(result, expected);
 	}
+
+	@Test
+	public void testNumber1() {
+		String source = "+/ # This is a comment\n \" This is a new string added\" 1234 *-";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("PLUS", "SLASH", "NEWLINE", "STRING", "NUMBER", "ASTERISK", "MINUS", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while(token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(result, expected);
+	}
+
+	@Test
+	public void testNumber2() {
+		String source = "+/ # This is a comment\n \" This is a new string added\" 1234.56 *-";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("PLUS", "SLASH", "NEWLINE", "STRING", "NUMBER", "ASTERISK", "MINUS", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while(token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(result, expected);
+	}
 	
 }
