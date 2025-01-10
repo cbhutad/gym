@@ -52,6 +52,11 @@ public class Lexer {
 		}
 	}
 
+	private static boolean checkDigit(char ch) {
+		int diff = ch - '0';
+		return diff >= 0 && diff <= 9;
+	}
+
 	public Token getToken() {
 
 		this.skipWhitespaces();
@@ -111,6 +116,25 @@ public class Lexer {
 			}
 
 			token = new Token(this.source.substring(startPos, this.currentPosition), TokenType.STRING);
+		} else if (checkDigit(this.currentCharacter)) {
+			int startPos = this.currentPosition;
+
+			while (checkDigit(currentCharacter)) {
+				this.nextCharacter();
+			}
+
+			if (this.currentCharacter == '.') {
+				this.nextCharacter();
+				if (!checkDigit(this.peek())) {
+					this.abort("Illegal character in number.");
+				} else {
+					while(checkDigit(currentCharacter)) {
+						this.nextCharacter();
+					}
+				}
+			}
+
+			token = new Token(this.source.substring(startPos, this.currentPosition + 1), TokenType.NUMBER);
 		} else {
 			// Unknown token
 			this.abort("Unknown token : " + this.currentCharacter);
