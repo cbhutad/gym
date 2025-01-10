@@ -75,5 +75,22 @@ public class LexerTest {
 
 		assertEquals(expected, result);
 	}
+
+	@Test
+	public void testString() {
+		String source = "+/ # This is a comment\n \" This is a new string added\" *-";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("PLUS", "SLASH", "NEWLINE", "STRING", "ASTERISK", "MINUS", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while(token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(result, expected);
+	}
 	
 }
