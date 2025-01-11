@@ -18,6 +18,15 @@ public class Token {
         return this.kind;
     }
 
+    public static TokenType checkIfKeyword(String tokenText) {
+        for (TokenType type : TokenType.values()) {
+            if (type.toString().equals(tokenText) && type.getTokenValue() >= 101 && type.getTokenValue() <= 111) {
+                return type;
+            }
+        }
+        return TokenType.NOTKEYWORD;
+    }
+
     @Override
     public String toString() {
         return kind.toString();
