@@ -1,5 +1,7 @@
 package com.github.cbhutad.gym.compilers;
 
+import java.util.regex.Pattern;
+
 public class Lexer {
 
 	private String source;
@@ -53,8 +55,7 @@ public class Lexer {
 	}
 
 	private static boolean checkDigit(char ch) {
-		int diff = ch - '0';
-		return diff >= 0 && diff <= 9;
+		return Pattern.matches("\\d", ch + "");
 	}
 
 	public Token getToken() {
