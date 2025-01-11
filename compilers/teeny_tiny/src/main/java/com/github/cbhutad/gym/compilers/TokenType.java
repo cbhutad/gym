@@ -9,6 +9,7 @@ public enum TokenType {
     STRING(3),
     
     // Keywords
+    NOTKEYWORD(100),
     LABEL(101),
     GOTO(102),
     PRINT(103),
