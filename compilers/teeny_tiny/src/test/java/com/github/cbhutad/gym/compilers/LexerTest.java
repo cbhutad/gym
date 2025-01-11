@@ -126,5 +126,56 @@ public class LexerTest {
 
 		assertEquals(result, expected);
 	}
+
+	@Test
+	public void checkKeyword() {
+		String source = "+/ LET PRINT # This is a comment\n \" This is a new string added\" 1234.56 *-";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("PLUS", "SLASH", "LET", "PRINT", "NEWLINE", "STRING", "NUMBER", "ASTERISK", "MINUS", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while (token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void checkIdentifiers() {
+		String source = "+/ nums num1 # This is a comment\n \" This is a new string added\" 1234.56 *-";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("PLUS", "SLASH", "IDENT", "IDENT", "NEWLINE", "STRING", "NUMBER", "ASTERISK", "MINUS", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while (token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void checkAllTokens() {
+		String source = "IF+-123 foo*THEN/";
+		List<String> result = new ArrayList<>();
+		List<String> expected = Arrays.asList("IF", "PLUS", "MINUS", "NUMBER", "IDENT", "ASTERISK", "THEN", "SLASH", "NEWLINE");
+
+		Lexer lex = new Lexer(source);
+		Token token = lex.getToken();
+
+		while (token.getKind() != TokenType.EOF) {
+			result.add(token.toString());
+			token = lex.getToken();
+		}
+
+		assertEquals(expected, result);
+	}
 	
 }
