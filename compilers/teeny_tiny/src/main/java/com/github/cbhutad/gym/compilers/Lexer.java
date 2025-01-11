@@ -58,6 +58,14 @@ public class Lexer {
 		return Pattern.matches("\\d", ch + "");
 	}
 
+	private static boolean checkAlphanumeric(char ch) {
+		return Pattern.matches("\\p{Alnum}", ch + "");
+	}
+
+	private static boolean checkAlphabetic(char ch) {
+		return Pattern.matches("\\p{Alpha}", ch + "");
+	}
+
 	public Token getToken() {
 
 		this.skipWhitespaces();
@@ -136,7 +144,23 @@ public class Lexer {
 			}
 
 			token = new Token(this.source.substring(startPos, this.currentPosition + 1), TokenType.NUMBER);
-		} else {
+		} else if (checkAlphabetic(this.currentCharacter)) {
+			int startPos = this.currentPosition;
+			
+			while (checkAlphanumeric(this.peek())) {
+				this.nextCharacter();
+			}
+
+			String tokenText = this.source.substring(startPos, this.currentPosition + 1);
+			TokenType type = Token.checkIfKeyword(tokenText);
+
+			if (type != TokenType.NOTKEYWORD) {
+				token = new Token(tokenText, type);
+			} else {
+				token = new Token(tokenText, TokenType.IDENT);
+			}
+
+		}else {
 			// Unknown token
 			this.abort("Unknown token : " + this.currentCharacter);
 		}
