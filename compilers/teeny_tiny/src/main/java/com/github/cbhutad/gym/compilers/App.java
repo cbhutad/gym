@@ -9,7 +9,15 @@ public class App {
 
     public static void main(String[] args) {
 
-        File file = new File(args[0]);
+        System.out.println("Teeny tiny compiler");
+	
+	/* Checking if the source file to be compiled is provided or not. If not provided then abort the program with message. */
+	if (args.length != 1) {
+		System.out.println("Source file for compilation not provided");
+		System.exit(1);
+	}
+	    
+	File file = new File(args[0]);
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -19,22 +27,24 @@ public class App {
                 sb.append(br.readLine());
             }
 
+	    /* Initialize the lexer and parser instances */
             Lexer lex = new Lexer(sb.toString());
-            Token token = lex.getToken();
-    
-            while (token.getKind() != TokenType.EOF) {
-                System.out.println(token.toString());
-                token = lex.getToken();
-            }
-        } catch (IOException ex) {
+    	    Parser parser = new Parser(lex);
+
+	    /* call the program function to generate the ast for source code */
+            parser.program();
+
+	    System.out.println("Parsing completed");
+        
+	} catch (IOException ex) {
             System.out.println(ex.getMessage());
         } finally {
             if (file.exists()) {
                try {
                    br.close();   
                } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+		       System.out.println(ex.getMessage());
+	       }
             } 
         }
     }
