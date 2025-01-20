@@ -66,6 +66,20 @@ public class Parser {
 		}
 	}
 
-		
+	// nl ::= '\n'+
+	public void nl() {
+		System.out.println("NEWLINE");
+
+		//Atleast one newline character should be present
+		if (!checkToken(TokenType.NEWLINE)) {
+			this.abort("Expected alteast one newline character");
+		}
+		this.nextToken();
+
+		// More than one newline characters are allowed
+		while (!checkToken(TokenType.EOF)) {
+			this.nextToken();
+		}
+	}
 
 }
