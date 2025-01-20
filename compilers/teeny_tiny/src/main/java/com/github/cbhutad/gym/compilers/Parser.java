@@ -43,6 +43,29 @@ public class Parser {
 	// program ::= {statement}
 	public void program() {
 		System.out.println("PROGRAM");
+
+		while (!checkToken(TokenType.EOF)) {
+			this.statement();
+		}
 	}
+
+	public void statement() {
+		
+		// statement ::= "PRINT" (expression | string) nl
+		if (this.checkToken(TokenType.PRINT)) {
+			System.out.println("STATEMENT-PRINT");
+			self.nextToken();
+
+			if (this.checkToken(TokenType.STRING)) {
+				this.nextToken();
+			} else {
+				this.expression();
+			}
+
+			this.nl();
+		}
+	}
+
+		
 
 }
