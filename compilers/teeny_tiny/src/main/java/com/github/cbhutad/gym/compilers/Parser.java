@@ -61,9 +61,25 @@ public class Parser {
 			} else {
 				this.expression();
 			}
+		}
+
+		// statement ::= "IF" comparison "THEN" nl {statement} "ENDIF" nl
+		else if (this.checkToken(TokenType.IF)) {
+			System.out.println("STATEMENT-IF");
+			this.nextToken();
+			this.comparison();
+			this.match(TokenType.THEN);
 
 			this.nl();
+
+			while (!checkToken(TokenType.ENDIF)) {
+				this.statement();
+			}
+		
+			this.match(TokenType.ENDIF);
 		}
+
+		this.nl();
 	}
 
 	// nl ::= '\n'+
@@ -71,13 +87,10 @@ public class Parser {
 		System.out.println("NEWLINE");
 
 		//Atleast one newline character should be present
-		if (!checkToken(TokenType.NEWLINE)) {
-			this.abort("Expected alteast one newline character");
-		}
-		this.nextToken();
+		this.match(TokenType.NEWLINE);
 
 		// More than one newline characters are allowed
-		while (!checkToken(TokenType.EOF)) {
+		while (checkToken(TokenType.NEWLINE)) {
 			this.nextToken();
 		}
 	}
