@@ -79,6 +79,22 @@ public class Parser {
 			this.match(TokenType.ENDIF);
 		}
 
+		// statement ::= "WHILE" comparison "THEN" nl {statement} "ENDWHILE" nl
+		else if (this.checkToken(TokenType.WHILE)) {
+			System.out.println("STATEMENT-WHILE");
+			this.nextToken();
+			this.comparison();
+			this.match(TokenType.THEN);
+
+			this.nl();
+
+			while (!checkToken(TokenType.ENDWHILE)) {
+				this.statement();
+			}
+
+			this.match(TokenType.ENDWHILE);
+		}
+
 		this.nl();
 	}
 
