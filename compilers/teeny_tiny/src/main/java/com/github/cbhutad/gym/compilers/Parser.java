@@ -95,6 +95,13 @@ public class Parser {
 			this.match(TokenType.ENDWHILE);
 		}
 
+		// statement ::= "LABEL" ident nl
+		else if (checkToken(TokenType.LABEL)) {
+			System.out.println("STATEMENT-LABEL");
+			this.nextToken();
+			this.match(TokenType.IDENT);
+		}
+
 		this.nl();
 	}
 
