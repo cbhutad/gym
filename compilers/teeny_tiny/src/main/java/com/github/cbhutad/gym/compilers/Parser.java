@@ -102,6 +102,13 @@ public class Parser {
 			this.match(TokenType.IDENT);
 		}
 
+		// statement ::= "GOTO" ident nl
+		else if (checkToken(TokenType.GOTO)) {
+			System.out.println("STATEMENT-GOTO");
+			this.nextToken();
+			this.match(TokenType.IDENT);
+		}
+
 		this.nl();
 	}
 
