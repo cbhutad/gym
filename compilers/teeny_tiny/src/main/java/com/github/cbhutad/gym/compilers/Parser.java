@@ -125,6 +125,11 @@ public class Parser {
 			this.match(TokenType.IDENT);
 		}
 
+		// Invalid token
+		else {
+			this.abort("Invalid statement at : " + this.currentToken.getText() + " ( " + this.currentToken.getKind() + " )");
+		}
+
 		this.nl();
 	}
 
