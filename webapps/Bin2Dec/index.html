@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bin2Dec</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div>
+			<h1>Binary to Decimal Converter</h1>
+			<form id="binaryForm">
+				<label for="binarystring">Binary String</label>
+				<input type="text" name="binarystring" id="binarystring" required>
+				
+				<button type="button" onclick="generateDecimal()">Convert</button>
+			</form>
+			<span id="error-message"></span>
+			<span id="result"></span>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
