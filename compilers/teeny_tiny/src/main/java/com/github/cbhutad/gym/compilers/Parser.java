@@ -109,6 +109,15 @@ public class Parser {
 			this.match(TokenType.IDENT);
 		}
 
+		// statement ::= "LET" ident "=" expression nl
+		else if (checkToken(TokenType.LET)) {
+			System.out.println("STATEMENT-LET");
+			this.nextToken();
+			this.match(TokenType.IDENT);
+			this.match(TokenType.EQ);
+			this.expression();
+		}
+
 		this.nl();
 	}
 
