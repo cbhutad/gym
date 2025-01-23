@@ -118,6 +118,13 @@ public class Parser {
 			this.expression();
 		}
 
+		// statement ::= "INPUT" ident nl
+		else if (checkToken(TokenType.INPUT)) {
+			System.out.println("STATEMENT-INPUT");
+			this.nextToken();
+			this.match(TokenType.IDENT);
+		}
+
 		this.nl();
 	}
 
