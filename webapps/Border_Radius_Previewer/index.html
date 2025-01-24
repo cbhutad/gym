@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div>
-			<p class="box"></p>
+			<p class="box" id="box"></p>
 
 			<br/>
 
@@ -15,22 +15,26 @@
 				<label for="topleft">Top Left Border Value : </label>
 				<input type="number" name="topleft" id="topleft">
 				<button type="button" onclick="topLeftBorder()">Top Left Border</button>
+				<button type="button" onclick='copycss("topleft")'>Copy CSS</button>
 				
 				<br/>
 				<label for="topright">Top Right Border Value : </label>
 				<input type="number" name="topright" id="topright">
 				<button type="button" onclick="topRightBorder()">Top Right Border</button>
+				<button type="button" onclick='copycss("topright")'>Copy CSS</button>
 
 				<br/>
 				<label for="bottomleft">Bottom Left Border Value : </label>
 				<input type="number" name="bottomleft" id="bottomleft">
 				<button type="button" onclick="bottomLeftBorder()">Bottom Left Border</button>
-			
+				<button type="button" onclick='copycss("bottomleft")'>Copy CSS</button>
+				
 				<br/>
 				<label for="bottomright">Bottom Right Border Value : </label>
 				<input type="number" name="bottomright" id="bottomright">
 				<button type="button" onclick="bottomRightBorder()">Bottom Right Border</button>
-
+				<button type="button" onclick='copycss("bottomright")'>Copy CSS</button>
+			
 			<form>
 		</div>
 
