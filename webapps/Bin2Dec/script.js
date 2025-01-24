@@ -9,7 +9,7 @@ function generateDecimal() {
 	// check for binary constraint of the string.
 	for (let i = 0;i < binaryInput.length; i++) {
 		if (binaryInput[i] != '1' && binaryInput[i] != '0') {
-			errorMessageSpan.innerText = "binary string does not allow integers apart from 0 and 1";
+			errorMessageSpan.innerText = "Error : binary string does not allow integers apart from 0 and 1";
 			return;
 		}
 	}
