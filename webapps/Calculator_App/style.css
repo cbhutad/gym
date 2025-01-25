@@ -1,0 +1,18 @@
+.calculatordisplay {
+	height: 30px;
+	width: 200px;
+	border: solid 2px black;
+}
+
+.calculatoroperators {
+	width: 200px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	gap: 5px;
+}
+
+.operator {
+	text-align: center;
+	padding: 2px;
+}
