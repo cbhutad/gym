@@ -44,6 +44,11 @@ public class Parser {
 	public void program() {
 		System.out.println("PROGRAM");
 
+		// handling newlines at the start of the program.
+		while(checkToken(TokenType.NEWLINE)) {
+			this.nextToken();
+		}
+		
 		while (!checkToken(TokenType.EOF)) {
 			this.statement();
 		}
@@ -54,7 +59,7 @@ public class Parser {
 		// statement ::= "PRINT" (expression | string) nl
 		if (this.checkToken(TokenType.PRINT)) {
 			System.out.println("STATEMENT-PRINT");
-			self.nextToken();
+			this.nextToken();
 
 			if (this.checkToken(TokenType.STRING)) {
 				this.nextToken();
@@ -133,6 +138,29 @@ public class Parser {
 		this.nl();
 	}
 
+	// comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+	public void comparison() {
+		System.out.println("COMPARISON");
+
+		this.expression();
+
+		// Atleast one comparison operator with expression should be present
+		if (this.isComparisonOperator()) {
+			this.nextToken();
+			this.expression();
+		} else {
+			this.abort("Expected atleast one comparison operator at : " + this.currentToken.getText());
+		}
+
+		while (this.isComparisonOperator()) {
+			this.nextToken();
+			this.expression();
+		}
+	}
+
+	public void expression() {
+	}
+
 	// nl ::= '\n'+
 	public void nl() {
 		System.out.println("NEWLINE");
@@ -144,6 +172,10 @@ public class Parser {
 		while (checkToken(TokenType.NEWLINE)) {
 			this.nextToken();
 		}
+	}
+
+	private boolean isComparisonOperator() {
+		return this.checkToken(TokenType.EQEQ) || this.checkToken(TokenType.NOTEQ) || this.checkToken(TokenType.GT) || this.checkToken(TokenType.GTEQ) || this.checkToken(TokenType.LT) || this.checkToken(TokenType.LTEQ);
 	}
 
 }
