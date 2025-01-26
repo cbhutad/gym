@@ -25,6 +25,7 @@ public class App {
 
             while (br.ready()) {
                 sb.append(br.readLine());
+		sb.append("\n");
             }
 
 	    /* Initialize the lexer and parser instances */
