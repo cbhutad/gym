@@ -95,8 +95,13 @@ function operatorclick(operator) {
 						}
 					}
 
-					previousValues.push(splits[0]);
-					displayParagraph.innerText = splits[0];
+					if(splits[0].length <= 8) {
+						previousValues.push(splits[0]);
+						displayParagraph.innerText = splits[0];
+					} else {
+						displayParagraph.innerText = "Error. cannot input more than 8 digit operation values. Press C and retry";
+						break;
+					}
 				}
 			}
 
