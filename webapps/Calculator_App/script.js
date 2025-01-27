@@ -105,16 +105,39 @@ function operatorclick(operator) {
 		case "C":
 			number = "";
 			if (displayParagraph.innerText !== "") {
-				const splits = displayParagraph.innerText.split(" ");
-				if (splits.length === 1) {
-					if (previousValues.length === 1) {
+				
+				if (displayParagraph.innerText.indexOf("Error") > -1) {
+					if (previousValues.length === 0) {
 						displayParagraph.innerText = "";
 						previousValues = [];
 						return;
+					} else if (previousValues.length === 1) {
+						displayParagraph.innerText = previousValues[0];
+						previousValues = [];
+						return;
 					} else {
-						displayParagraph.innerText = previousValues[previousValues.length - 2];
+						displayParagraph.innerText = previousValues[previousValues.length - 1];
 						previousValues.pop();
 					}
+					return;
+
+				}
+
+				const splits = displayParagraph.innerText.split(" ");
+				if (splits.length === 1) {
+					if (previousValues.length === 0) {
+						displayParagraph.innerText = "";
+						previousValues = [];
+						return;
+					} else if (previousValues.length === 1) {
+						displayParagraph.innerText = previousValues[0];
+						previousValues = [];
+						return;
+					} else {
+						displayParagraph.innerText = previousValues[previousValues.length - 1];
+						previousValues.pop();
+					}
+					return;
 				} else {
 					splits.pop();
 					displayParagraph.innerText = splits.join(" ");
