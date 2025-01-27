@@ -1,11 +1,11 @@
 .calculatordisplay {
 	height: 30px;
-	width: 200px;
+	width: 600px;
 	border: solid 2px black;
 }
 
 .calculatoroperators {
-	width: 200px;
+	width: 600px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(5, 1fr);
