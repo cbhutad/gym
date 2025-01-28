@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Countdown Timer</title>
+		<link rel="stylesheets" href="style.css">
+	</head>
+	<body>
+
+		<form>
+			<label for="eventname">Event Name : </label>
+			<input type="text" id="eventname" name="eventname" required/>
+
+			<br/>
+			<br/>
+
+			<label for="eventdate">Event Date : </label>
+			<input type="date" id="eventdate" name="eventdate" required/>
+
+			<br/>
+			<br/>
+
+			<label for="eventtime">Event Time : </label>
+			<input type="time" id="eventime" name="eventtime"/>
+
+			<br/>
+			<br/>
+
+			<button type="submit" onclick="setTimer()">Start</button>
+		
+		</form>
+
+		<br/>
+		<br/>
+
+		<p id="countdown-display"></p>
+
+		<script src="script.js"></script>
+	</body>
+</html>
