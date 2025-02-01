@@ -158,7 +158,16 @@ public class Parser {
 		}
 	}
 
+	// expression ::= term {("+" | "-") term}
 	public void expression() {
+		System.out.println("EXPRESSION");
+
+		this.term();
+
+		while (this.checkToken(TokenType.PLUS) || this.checkToken(TokenType.MINUS)) {
+			this.nextToken();
+			this.term();
+		}
 	}
 
 	// term ::= unary {("/" | "*") unary}
