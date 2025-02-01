@@ -194,7 +194,7 @@ public class Parser {
 	
 	// primary ::= number | ident
 	public void primary() {
-		System.out.println("PRIMARY + ( " + this.currentToken.getText() + ")");
+		System.out.println("PRIMARY + ( " + this.currentToken.getText() + " )");
 
 		if (this.checkToken(TokenType.NUMBER)) {
 			this.nextToken();
