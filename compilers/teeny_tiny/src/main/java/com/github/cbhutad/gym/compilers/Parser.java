@@ -161,6 +161,18 @@ public class Parser {
 	public void expression() {
 	}
 
+	// term ::= unary {("/" | "*") unary}
+	public void term() {
+		System.out.println("TERM");
+
+		this.unary();
+
+		while (this.checkToken(TokenType.SLASH) || this.checkToken(TokenType.ASTERISK)) {
+			this.nextToken();
+			this.unary();
+		}
+	}
+
 	// unary ::= ["+" | "-"] primary
 	public void unary() {
 		System.out.println("UNARY");
