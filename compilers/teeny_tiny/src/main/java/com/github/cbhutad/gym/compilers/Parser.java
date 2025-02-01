@@ -161,6 +161,16 @@ public class Parser {
 	public void expression() {
 	}
 
+	// unary ::= ["+" | "-"] primary
+	public void unary() {
+		System.out.println("UNARY");
+
+		if (this.checkToken(TokenType.PLUS) || this.checkToken(TokenType.MINUS)) {
+			this.nextToken();
+		}
+		this.primary();
+	}
+	
 	// primary ::= number | ident
 	public void primary() {
 		System.out.println("PRIMARY + ( " + this.currentToken.getText() + ")");
