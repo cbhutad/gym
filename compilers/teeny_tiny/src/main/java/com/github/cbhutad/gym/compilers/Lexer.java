@@ -25,7 +25,7 @@ public class Lexer {
 	}
 
 	public char peek() {
-		if (this.currentPosition + 1 >= this.source.length()) {
+		if ((this.currentPosition + 1) >= this.source.length()) {
 			return '\0';
 		}
 		return this.source.charAt(this.currentPosition + 1);
@@ -128,16 +128,16 @@ public class Lexer {
 		} else if (checkDigit(this.currentCharacter)) {
 			int startPos = this.currentPosition;
 
-			while (checkDigit(currentCharacter)) {
+			while (checkDigit(this.peek())) {
 				this.nextCharacter();
 			}
 
-			if (this.currentCharacter == '.') {
+			if (this.peek() == '.') {
 				this.nextCharacter();
 				if (!checkDigit(this.peek())) {
 					this.abort("Illegal character in number.");
 				} else {
-					while(checkDigit(currentCharacter)) {
+					while(checkDigit(this.peek())) {
 						this.nextCharacter();
 					}
 				}
