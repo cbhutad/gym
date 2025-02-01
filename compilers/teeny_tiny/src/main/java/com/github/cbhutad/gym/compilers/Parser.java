@@ -161,6 +161,19 @@ public class Parser {
 	public void expression() {
 	}
 
+	// primary ::= number | ident
+	public void primary() {
+		System.out.println("PRIMARY + ( " + this.currentToken.getText() + ")");
+
+		if (this.checkToken(TokenType.NUMBER)) {
+			this.nextToken();
+		} else if (this.checkToken(TokenType.IDENT)) {
+			this.nextToken();
+		} else {
+			this.abort("Unexpected token : " + this.currentToken.getText());
+		}
+	}
+
 	// nl ::= '\n'+
 	public void nl() {
 		System.out.println("NEWLINE");
