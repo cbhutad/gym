@@ -62,6 +62,12 @@ public class Parser {
 		while (!checkToken(TokenType.EOF)) {
 			this.statement();
 		}
+
+		for(String gotoLabel : this.labelsGotoed) {
+			if (!this.labelsDeclared.contains(gotoLabel)) {
+				this.abort("Attempting to GOTO an undeclared label : " + gotoLabel);
+			}
+		}
 	}
 
 	public void statement() {
@@ -114,6 +120,12 @@ public class Parser {
 		else if (checkToken(TokenType.LABEL)) {
 			System.out.println("STATEMENT-LABEL");
 			this.nextToken();
+
+			if (this.labelsDeclared.contains(this.currentToken.getText())) {
+				this.abort("Label already exists : " + this.currentToken.getText());
+			}
+			this.labelsDeclared.add(this.currentToken.getText());
+
 			this.match(TokenType.IDENT);
 		}
 
@@ -121,6 +133,7 @@ public class Parser {
 		else if (checkToken(TokenType.GOTO)) {
 			System.out.println("STATEMENT-GOTO");
 			this.nextToken();
+			this.labelsGotoed.add(this.currentToken.getText());
 			this.match(TokenType.IDENT);
 		}
 
