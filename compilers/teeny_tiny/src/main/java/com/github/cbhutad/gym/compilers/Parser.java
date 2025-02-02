@@ -1,15 +1,25 @@
 package com.github.cbhutad.gym.compilers;
 
+import java.util.Set;
+import java.util.HashSet;
+
 public class Parser {
 
 	private Lexer lexer;
 	private Token currentToken;
 	private Token peekToken;
+	private Set<String> labelsDeclared;
+	private Set<String> labelsGotoed;
+	private Set<String> symbols;
 
 	public Parser(Lexer lexer) {
 		this.lexer = lexer;
 		this.currentToken = new Token("\\0", TokenType.EOF);
 		this.peekToken = new Token("\\0", TokenType.EOF);
+
+		this.labelsDeclared = new HashSet<String>();
+		this.labelsGotoed = new HashSet<String>();
+		this.symbols = new HashSet<String>();
 
 		this.nextToken();
 		this.nextToken(); // called 2 times in order to set the current and peek tokens.
