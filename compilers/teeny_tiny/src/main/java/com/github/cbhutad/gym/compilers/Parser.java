@@ -141,6 +141,11 @@ public class Parser {
 		else if (checkToken(TokenType.LET)) {
 			System.out.println("STATEMENT-LET");
 			this.nextToken();
+			
+			if (!this.symbols.contains(this.currentToken.getText())) {
+				this.symbols.add(this.currentToken.getText());
+			}
+
 			this.match(TokenType.IDENT);
 			this.match(TokenType.EQ);
 			this.expression();
@@ -150,6 +155,11 @@ public class Parser {
 		else if (checkToken(TokenType.INPUT)) {
 			System.out.println("STATEMENT-INPUT");
 			this.nextToken();
+			
+			if (!this.symbols.contains(this.currentToken.getText())) {
+				this.symbols.add(this.currentToken.getText());
+			}
+
 			this.match(TokenType.IDENT);
 		}
 
@@ -222,6 +232,11 @@ public class Parser {
 		if (this.checkToken(TokenType.NUMBER)) {
 			this.nextToken();
 		} else if (this.checkToken(TokenType.IDENT)) {
+			
+			if (!this.symbols.contains(this.currentToken.getText())) {
+				this.abort("Attempting to reference undeclared identifier : " + this.currentToken.getText());
+			}
+
 			this.nextToken();
 		} else {
 			this.abort("Unexpected token : " + this.currentToken.getText());
