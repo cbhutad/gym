@@ -6,14 +6,16 @@ import java.util.HashSet;
 public class Parser {
 
 	private Lexer lexer;
+	private Emitter emitter;
 	private Token currentToken;
 	private Token peekToken;
 	private Set<String> labelsDeclared;
 	private Set<String> labelsGotoed;
 	private Set<String> symbols;
 
-	public Parser(Lexer lexer) {
+	public Parser(Lexer lexer, Emitter emitter) {
 		this.lexer = lexer;
+		this.emitter = emitter;
 		this.currentToken = new Token("\\0", TokenType.EOF);
 		this.peekToken = new Token("\\0", TokenType.EOF);
 
@@ -59,6 +61,9 @@ public class Parser {
 			this.nextToken();
 		}
 		
+		this.emitter.headerLine("#include <stdio.h>");
+		this.emitter.headerLine("int main(void) {");
+
 		while (!checkToken(TokenType.EOF)) {
 			this.statement();
 		}
@@ -68,6 +73,10 @@ public class Parser {
 				this.abort("Attempting to GOTO an undeclared label : " + gotoLabel);
 			}
 		}
+
+		this.emitter.emitLine("printf(\"Hello World\");");
+		this.emitter.emitLine("return 0;");
+		this.emitter.emitLine("}");
 	}
 
 	public void statement() {
