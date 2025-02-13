@@ -1,3 +1,5 @@
 .mvn/
 target/
-
+*.c
+# Executable file
+*.out
