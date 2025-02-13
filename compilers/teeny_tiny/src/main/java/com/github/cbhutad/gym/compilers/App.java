@@ -30,10 +30,17 @@ public class App {
 
 	    /* Initialize the lexer and parser instances */
             Lexer lex = new Lexer(sb.toString());
-    	    Parser parser = new Parser(lex);
+	    Emitter emitter = new Emitter("out.c");
+    	    Parser parser = new Parser(lex, emitter);
 
 	    /* call the program function to generate the ast for source code */
             parser.program();
+
+	    try {
+	    	emitter.writeFile();
+	    } catch (Exception ex) {
+	    	System.out.println("Issue occurred during file write. Error message -> " + ex.getMessage()); 
+	    }
 
 	    System.out.println("Parsing completed");
         
