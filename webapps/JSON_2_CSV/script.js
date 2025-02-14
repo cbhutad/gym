@@ -18,3 +18,7 @@ function convert() {
 		alert("Provided json input is either empty or not valid");
 	}
 }
+
+function empty() {
+	jsonArea.value = "";
+}
