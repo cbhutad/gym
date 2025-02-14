@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSON 2 CSV</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1>JSON 2 CSV Converter</h1>
+		<div>
+			<button type="button" onclick="convert()">Convert</button>
+			<button type="button" onclick="clear()">Clear</button>
+		</div>
+		<br/>
+		<div id="section">
+			<div>
+				<textarea id="jsonstr" name="jsonstr" rows="40" cols="100" placeholder="Enter json here..."></textarea>
+			</div>
+			<div>
+				<textarea id="csvstr" name="csvstr" rows="40" cols="100"></textarea>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
