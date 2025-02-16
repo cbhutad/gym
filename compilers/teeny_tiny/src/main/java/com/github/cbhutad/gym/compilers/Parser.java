@@ -92,7 +92,7 @@ public class Parser {
 			} else {
 				this.emitter.emit("printf(\"%" + ".2f\\n, (float)(");
 				this.expression();
-				this.emitter.emitLine(");");
+				this.emitter.emitLine("));");
 			}
 		}
 
@@ -206,6 +206,7 @@ public class Parser {
 
 		// Atleast one comparison operator with expression should be present
 		if (this.isComparisonOperator()) {
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 			this.expression();
 		} else {
@@ -225,6 +226,7 @@ public class Parser {
 		this.term();
 
 		while (this.checkToken(TokenType.PLUS) || this.checkToken(TokenType.MINUS)) {
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 			this.term();
 		}
@@ -237,6 +239,7 @@ public class Parser {
 		this.unary();
 
 		while (this.checkToken(TokenType.SLASH) || this.checkToken(TokenType.ASTERISK)) {
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 			this.unary();
 		}
@@ -247,6 +250,7 @@ public class Parser {
 		System.out.println("UNARY");
 
 		if (this.checkToken(TokenType.PLUS) || this.checkToken(TokenType.MINUS)) {
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 		}
 		this.primary();
@@ -257,13 +261,14 @@ public class Parser {
 		System.out.println("PRIMARY + ( " + this.currentToken.getText() + " )");
 
 		if (this.checkToken(TokenType.NUMBER)) {
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 		} else if (this.checkToken(TokenType.IDENT)) {
 			
 			if (!this.symbols.contains(this.currentToken.getText())) {
 				this.abort("Attempting to reference undeclared identifier : " + this.currentToken.getText());
 			}
-
+			this.emitter.emit(this.currentToken.getText());
 			this.nextToken();
 		} else {
 			this.abort("Unexpected token : " + this.currentToken.getText());
