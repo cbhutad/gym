@@ -1,0 +1,19 @@
+# Compute average of given values
+
+LET a = 0
+WHILE a < 1 REPEAT
+	PRINT "Enter the total count : "
+	INPUT a
+ENDWHILE
+
+LET b = 0
+LET s = 0
+WHILE b < a REPEAT
+	PRINT "Enter each entry : "
+	INPUT c
+	LET s = s + c
+	LET b = b + 1
+ENDWHILE
+
+PRINT "Average : "
+PRINT s / a
