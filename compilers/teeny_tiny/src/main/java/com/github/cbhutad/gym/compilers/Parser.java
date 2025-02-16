@@ -74,7 +74,7 @@ public class Parser {
 			}
 		}
 
-		this.emitter.emitLine("printf(\"Hello World\");");
+		//this.emitter.emitLine("printf(\"Hello World\");");
 		this.emitter.emitLine("return 0;");
 		this.emitter.emitLine("}");
 	}
@@ -87,9 +87,12 @@ public class Parser {
 			this.nextToken();
 
 			if (this.checkToken(TokenType.STRING)) {
+				this.emitter.emitLine("printf(\"" + this.currentToken.getText() + "\\n\");");
 				this.nextToken();
 			} else {
+				this.emitter.emit("printf(\"%" + ".2f\\n, (float)(");
 				this.expression();
+				this.emitter.emitLine(");");
 			}
 		}
 
