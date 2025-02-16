@@ -114,13 +114,13 @@ public class Parser {
 			this.emitter.emitLine("}");
 		}
 
-		// statement ::= "WHILE" comparison "THEN" nl {statement} "ENDWHILE" nl
+		// statement ::= "WHILE" comparison "REPEAT" nl {statement} "ENDWHILE" nl
 		else if (this.checkToken(TokenType.WHILE)) {
 			System.out.println("STATEMENT-WHILE");
 			this.nextToken();
 			this.emitter.emit("while (");
 			this.comparison();
-			this.match(TokenType.THEN);
+			this.match(TokenType.REPEAT);
 
 			this.nl();
 			this.emitter.emitLine(") {");
@@ -151,7 +151,7 @@ public class Parser {
 			System.out.println("STATEMENT-GOTO");
 			this.nextToken();
 			this.labelsGotoed.add(this.currentToken.getText());
-			this.emitter.emitLine("goto " + this.emitter.emitLine() + ";");
+			this.emitter.emitLine("goto " + this.currentToken.getText() + ";");
 			this.match(TokenType.IDENT);
 		}
 
