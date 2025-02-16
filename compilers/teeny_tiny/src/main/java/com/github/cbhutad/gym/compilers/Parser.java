@@ -90,7 +90,7 @@ public class Parser {
 				this.emitter.emitLine("printf(\"" + this.currentToken.getText() + "\\n\");");
 				this.nextToken();
 			} else {
-				this.emitter.emit("printf(\"%" + ".2f\\n, (float)(");
+				this.emitter.emit("printf(\"%" + ".2f\\n\", (float)(");
 				this.expression();
 				this.emitter.emitLine("));");
 			}
