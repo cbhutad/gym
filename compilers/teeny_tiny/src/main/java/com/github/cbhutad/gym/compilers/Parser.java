@@ -100,32 +100,37 @@ public class Parser {
 		else if (this.checkToken(TokenType.IF)) {
 			System.out.println("STATEMENT-IF");
 			this.nextToken();
+			this.emitter.emit("if (");
 			this.comparison();
 			this.match(TokenType.THEN);
-
 			this.nl();
-
+			this.emitter.emitLine(") {");
+			
 			while (!checkToken(TokenType.ENDIF)) {
 				this.statement();
 			}
 		
 			this.match(TokenType.ENDIF);
+			this.emitter.emitLine("}");
 		}
 
 		// statement ::= "WHILE" comparison "THEN" nl {statement} "ENDWHILE" nl
 		else if (this.checkToken(TokenType.WHILE)) {
 			System.out.println("STATEMENT-WHILE");
 			this.nextToken();
+			this.emitter.emit("while (");
 			this.comparison();
 			this.match(TokenType.THEN);
 
 			this.nl();
+			this.emitter.emitLine(") {");
 
 			while (!checkToken(TokenType.ENDWHILE)) {
 				this.statement();
 			}
 
 			this.match(TokenType.ENDWHILE);
+			this.emitter.emitLine("}");
 		}
 
 		// statement ::= "LABEL" ident nl
@@ -137,7 +142,7 @@ public class Parser {
 				this.abort("Label already exists : " + this.currentToken.getText());
 			}
 			this.labelsDeclared.add(this.currentToken.getText());
-
+			this.emitter.emitLine(this.currentToken.getText() + ":");
 			this.match(TokenType.IDENT);
 		}
 
@@ -146,6 +151,7 @@ public class Parser {
 			System.out.println("STATEMENT-GOTO");
 			this.nextToken();
 			this.labelsGotoed.add(this.currentToken.getText());
+			this.emitter.emitLine("goto " + this.emitter.emitLine() + ";");
 			this.match(TokenType.IDENT);
 		}
 
@@ -156,11 +162,14 @@ public class Parser {
 			
 			if (!this.symbols.contains(this.currentToken.getText())) {
 				this.symbols.add(this.currentToken.getText());
+				this.emitter.headerLine("float " + this.currentToken.getText() + ";");
 			}
 
+			this.emitter.emit(this.currentToken.getText() + " = ");
 			this.match(TokenType.IDENT);
 			this.match(TokenType.EQ);
 			this.expression();
+			this.emitter.emitLine(";");
 		}
 
 		// statement ::= "INPUT" ident nl
@@ -170,8 +179,14 @@ public class Parser {
 			
 			if (!this.symbols.contains(this.currentToken.getText())) {
 				this.symbols.add(this.currentToken.getText());
+				this.emitter.headerLine("float " + this.currentToken.getText() + ";");
 			}
 
+			this.emitter.emitLine("if (0 == scanf(\"%f\", &" + this.currentToken.getText() + ")) {");
+			this.emitter.emitLine(this.currentToken.getText() + " = 0;");
+			this.emitter.emit("scanf(\"%");
+			this.emitter.emitLine("*s\");");
+			this.emitter.emitLine("}");
 			this.match(TokenType.IDENT);
 		}
 
