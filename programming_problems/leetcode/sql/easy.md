@@ -289,3 +289,4 @@ FROM weather AS w1, weather AS w2
 WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.id != w2.id AND w1.temperature > w2.temperature;
 
 ```
+
