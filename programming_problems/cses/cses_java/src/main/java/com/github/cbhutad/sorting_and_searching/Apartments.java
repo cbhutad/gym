@@ -4,61 +4,47 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Apartments {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n,m;
-        long k;
-        long[] wants, sizes;
-        String[] strs = br.readLine().split(" ");
-
-        n = Integer.parseInt(strs[0]);
-        m = Integer.parseInt(strs[1]);
-        k = Long.parseLong(strs[2]);
-
-        wants = new long[n];
-        strs = br.readLine().split(" ");
-        int index = 0;
-        for (String str: strs) {
-            wants[index++] = Long.parseLong(str);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        int[] ps = new int[n]; // applicant preferences
+        int[] aps = new int[m]; // apartment sizes
+ 
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            ps[i] = Integer.parseInt(st.nextToken());
         }
-        sizes = new long[m];
-        strs = br.readLine().split(" ");
-        index = 0;
-        for (String str : strs) {
-            sizes[index++] = Long.parseLong(str);
+ 
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < m; i++) {
+            aps[i] = Integer.parseInt(st.nextToken());
         }
-
-        long count = solution(n,m,k, wants, sizes);
-        System.out.println(count);
+ 
+        solution(n,m,k,ps,aps);
 
     }
 
-    private static long solution(int n, int m, long k, long[] wants, long[] sizes) {
-        Arrays.sort(wants);
-        Arrays.sort(sizes);
-        //System.out.println(Arrays.toString(wants));
-        
-        int i = 0, j = 0;
-        long count = 0;
-
+    private static void solution(int n,int m,int k, int[] ps, int[] aps) {
+        Arrays.sort(aps);
+        Arrays.sort(ps);
+        int count = 0, i = 0, j = 0;
         while (i < n && j < m) {
-            long want = wants[i];
-            long size = sizes[j];
-
-            if (size < want - k) {
-                j++;
-            } else if (size > want + k) {
-                i++;
-            } else {
+            if (Math.abs(ps[i] - aps[j]) <= k) {
                 count++;
                 i++;
                 j++;
+            } else if (k < (ps[i] - aps[j])) {
+                j++;
+            } else {
+                i++;
             }
-
         }
-
-        return count;
+        System.out.println(count);
     }
 }
